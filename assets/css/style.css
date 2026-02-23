@@ -1,0 +1,588 @@
+/* ============================================================
+   Chris Müller – Videojournalist
+   Design: Minimalist, light, black & white
+   ============================================================ */
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0a0a0a;
+  --white:   #ffffff;
+  --off:     #f5f5f3;
+  --gray:    #888;
+  --line:    #e8e8e6;
+
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', system-ui, sans-serif;
+
+  --nav-h:   60px;
+  --max:     1120px;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: var(--nav-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+
+.nav-logo {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--black);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--black); }
+
+/* Impressum link subtle */
+.nav-impressum { color: #bbb !important; }
+.nav-impressum:hover { color: var(--gray) !important; }
+
+/* Mobile toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--black);
+  transition: all 0.3s;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 580px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: var(--nav-h);
+  overflow: hidden;
+}
+
+.hero-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+  transition: filter 0.6s ease;
+}
+
+.hero-img:hover { filter: grayscale(60%); }
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3.5rem;
+  background: var(--white);
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-name em {
+  font-style: italic;
+  display: block;
+}
+
+.hero-role {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 3rem;
+}
+
+.hero-socials {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 3.5rem;
+}
+
+.hero-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 0.55rem 1rem 0.55rem 0.8rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.hero-social-link:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.hero-social-link svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.hero-social-link:hover svg { opacity: 1; }
+
+/* ============================================================
+   SECTION SHARED
+   ============================================================ */
+.container {
+  width: min(var(--max), 100% - 3rem);
+  margin-inline: auto;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+
+/* ============================================================
+   WORK / VIDEOS
+   ============================================================ */
+.work {
+  padding: 4rem 0;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.video-item {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* TikTok embed reset & control */
+.tiktok-wrap {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* Override TikTok's default blockquote styles */
+.tiktok-embed {
+  border: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--sans) !important;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about {
+  padding: 6rem 0;
+  background: var(--off);
+  border-top: 1px solid var(--line);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-img-wrap {
+  position: relative;
+}
+
+.about-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+}
+
+/* Pressefoto download button */
+.press-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.press-download:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+.about-text p {
+  font-size: 0.97rem;
+  color: #444;
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+}
+
+.about-text p em {
+  font-style: italic;
+  color: var(--black);
+}
+
+.about-links {
+  display: flex;
+  gap: 1.8rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.about-link:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* Inline mail link im About-Text */
+.about-mail {
+  color: var(--black);
+  font-weight: 400;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.about-mail:hover { opacity: 0.55; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  padding: 7rem 0;
+  background: var(--black);
+  color: var(--white);
+  border-top: 1px solid #222;
+}
+
+.contact-label {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.contact-email {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 3.6rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--white);
+  border-bottom: 1px solid #333;
+  padding-bottom: 6px;
+  margin-bottom: 3rem;
+  transition: border-color 0.25s;
+  line-height: 1.1;
+}
+.contact-email:hover { border-color: var(--white); }
+
+.contact-socials {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-socials a {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  transition: color 0.2s;
+}
+.contact-socials a:hover { color: var(--white); }
+
+/* ============================================================
+   IMPRESSUM
+   ============================================================ */
+.impressum {
+  padding: 6rem 0;
+  background: var(--off);
+  border-top: 1px solid var(--line);
+}
+
+.impressum-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.impressum-grid h3 {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.impressum-grid h3:first-child { margin-top: 0; }
+
+.impressum-grid p {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.impressum-grid a {
+  color: #555;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s, border-color 0.2s;
+}
+.impressum-grid a:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-inner span,
+.footer-inner a {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+}
+.footer-inner a:hover { color: var(--black); }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50vh auto;
+    height: auto;
+  }
+
+  .hero-img-wrap { height: 50vh; }
+
+  .hero-text {
+    padding: 2rem 1.5rem 1rem;
+    justify-content: flex-start;
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 10vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-role { margin-bottom: 1.5rem; }
+
+  .hero-socials {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0 1.5rem 2rem;
+    left: auto;
+    bottom: auto;
+  }
+
+  .about {
+    padding: 3.5rem 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-img {
+    aspect-ratio: 4/3;
+    max-height: 340px;
+  }
+
+  .section-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact {
+    padding: 4rem 0;
+  }
+
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-item { padding: 1.5rem 1rem; }
+
+  .impressum {
+    padding: 3.5rem 0;
+  }
+
+  .impressum-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  .nav-links li a {
+    display: block;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-toggle { display: flex; }
+  .nav-toggle.open span:first-child { transform: rotate(45deg) translate(4px, 4px); }
+  .nav-toggle.open span:last-child  { transform: rotate(-45deg) translate(4px, -4px); }
+}
+
+@media (max-width: 600px) {
+  .hero-name { font-size: clamp(2.5rem, 12vw, 3.2rem); }
+  .hero-text { padding: 1.8rem 1.2rem 0.8rem; }
+  .hero-socials { padding: 0 1.2rem 1.8rem; }
+  .contact-email { font-size: clamp(1.4rem, 7vw, 2rem); }
+  .about { padding: 3rem 0; }
+  .contact { padding: 3.5rem 0; }
+  .impressum { padding: 3rem 0; }
+  .about-text p { font-size: 0.93rem; }
+  .contact-socials { gap: 1.2rem; }
+}
