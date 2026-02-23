@@ -558,12 +558,14 @@ ul { list-style: none; }
     gap: 0;
     border-bottom: 1px solid var(--line);
     transform: translateY(-110%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, visibility 0.3s ease;
     pointer-events: none;
+    visibility: hidden;
   }
   .nav-links.open {
     transform: translateY(0);
     pointer-events: all;
+    visibility: visible;
   }
   .nav-links li a {
     display: block;
